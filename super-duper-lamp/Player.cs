@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SFML.System;
+﻿using SFML.System;
 using SFML.Window;
 
 namespace super_duper_lamp
@@ -15,7 +10,7 @@ namespace super_duper_lamp
         private bool _aDown;
         private bool _dDown;
 
-        private int _moveSpeed = 500;
+        private const int MoveSpeed = 500;
 
         public Player(int id) : base(id, "player", @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png")
         {
@@ -44,29 +39,30 @@ namespace super_duper_lamp
 
         public override void Think(Time dt)
         {
-            Vector2f MoveVector = new Vector2f(0,0);
+            var moveVector = new Vector2f(0,0);
 
             if (_wDown)
             {
-                MoveVector.Y += -_moveSpeed * dt.AsSeconds();
+                moveVector.Y += -MoveSpeed * dt.AsSeconds();
             }
 
             if (_sDown)
             {
-                MoveVector.Y += _moveSpeed * dt.AsSeconds();
+                moveVector.Y += MoveSpeed * dt.AsSeconds();
             }
 
             if (_aDown)
             {
-                MoveVector.X += -_moveSpeed * dt.AsSeconds();
+                //moveVector.X += -MoveSpeed * dt.AsSeconds();
+                Sprite.Rotation = Sprite.Rotation + 0.01f;
             }
 
             if (_dDown)
             {
-                MoveVector.X += _moveSpeed * dt.AsSeconds();
+                moveVector.X += MoveSpeed * dt.AsSeconds();
             }
 
-            sprite.Position += MoveVector;
+            Position += moveVector;
         }
     }
 }

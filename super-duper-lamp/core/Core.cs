@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
@@ -9,11 +8,11 @@ namespace super_duper_lamp.core
 {
     public static class Core
     {
-        private static List<Entity> Entities;
+        private static List<Entity> _entities;
 
         private static void Think(Time dt)
         {
-            foreach (var e in Entities)
+            foreach (var e in _entities)
             {
                 e.Think(dt);
             }
@@ -21,13 +20,13 @@ namespace super_duper_lamp.core
 
         private static void Draw(RenderWindow window)
         {
-            foreach (var e in Entities)
+            foreach (var e in _entities)
             {
                 try // prob slow to use a try catch but whatever
                 {
-                    Drawable Ent = (Drawable) e;
+                    Drawable ent = (Drawable) e;
 
-                    Ent.Draw(window);
+                    ent.Draw(window);
                 }
                 catch (Exception)
                 {
@@ -45,16 +44,17 @@ namespace super_duper_lamp.core
 
         private static void OnKeyPressed(object sender, EventArgs ev)
         {
-            foreach (var e in Entities)
+            foreach (var e in _entities)
             {
-                try // prob slow to use a try catch but whatever
+                try
                 {
-                    Player Ent = (Player)e;
+                    Player ent = (Player)e;
 
-                    Ent.Input(sender, (KeyEventArgs)ev, true);
+                    ent.Input(sender, (KeyEventArgs)ev, true);
                 }
                 catch (Exception)
                 {
+                    //shouldnt matter whats in here
                     Console.WriteLine("Not a player.");
                 }
             } 
@@ -62,13 +62,13 @@ namespace super_duper_lamp.core
 
         private static void OnKeyReleased(object sender, EventArgs ev)
         {
-            foreach (var e in Entities)
+            foreach (var e in _entities)
             {
-                try // prob slow to use a try catch but whatever
+                try
                 {
-                    Player Ent = (Player)e;
+                    Player ent = (Player)e;
 
-                    Ent.Input(sender, (KeyEventArgs)ev, false);
+                    ent.Input(sender, (KeyEventArgs)ev, false);
                 }
                 catch (Exception)
                 {
@@ -79,7 +79,7 @@ namespace super_duper_lamp.core
 
         public static void Run()
 		{
-            Entities = new List<Entity>();
+            _entities = new List<Entity>();
 
             // Create the main window
             RenderWindow window = new RenderWindow(new VideoMode(800, 600), "SFML Works!");
@@ -89,13 +89,20 @@ namespace super_duper_lamp.core
 
             Color windowColor = new Color(0, 0, 0);
 
-		    Entities.Add(new Drawable(0, "meme",
-		        @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png"));
+            var Ent = new Drawable(0, "meme",
+                @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png");
 
-            Entities.Add(new Entity(1, "meme"));
-            Entities.Add(new Player(2));
+            var ply = new Player(1);
 
-		    Clock clock = new Clock();
+		    Ent.Parent = ply;
+
+		    _entities.Add(Ent);
+		    Ent.RotateWithParent = true;
+
+		    Ent.Position = new Vector2f(75, 75);
+            _entities.Add(ply);
+
+	        Clock clock = new Clock();
 
             // Start the game loop
             while (window.IsOpen)
