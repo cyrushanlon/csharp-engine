@@ -10,7 +10,9 @@ namespace super_duper_lamp
         public Drawable Parent { get; set; }
         public bool RotateWithParent { get; set; }
 
+        public Vector2f Origin { get; set; }
         public Vector2f Position { get; set; }
+        public float Rotation { get; set; }
 
 	    private Texture texture;
 
@@ -18,34 +20,35 @@ namespace super_duper_lamp
 		{
 			texture = new Texture(pathToTexture);
             Sprite = new Sprite {Texture = texture};
+
+            Origin = new Vector2f(Sprite.GetLocalBounds().Width/2, Sprite.GetLocalBounds().Height / 2);
 		}
 
-		public virtual void Draw(RenderWindow window) 
+		public virtual void Draw(RenderWindow window)
 		{
+		    Sprite.Origin = Origin;
+
             //sets the parent transform if there is a requirement for one
 		    if (Parent != null)
 		    {
 		        if (RotateWithParent)
 		        {
-		            var radians = (Math.PI/180)*Parent.Sprite.Rotation;
-
-		            var ca = Math.Cos(radians);
-		            var sa = Math.Sin(radians);
-
-                    Sprite.Position = Parent.Position + new Vector2f(Convert.ToSingle(ca*Position.X - sa*Position.Y), Convert.ToSingle(sa *Position.X + ca*Position.Y));
-		            Sprite.Rotation = Parent.Sprite.Rotation;
-
-                    Console.WriteLine(radians);
+                    Sprite.Position = Parent.Position + Vector2Extended.Rotate(Position, Parent.Rotation);
+                    Sprite.Rotation = Parent.Rotation + Rotation;
 		        }
 		        else
+		        {
 		            Sprite.Position = Parent.Position + Position;
+		        }
+
 		    }
 		    else
 		    {
 		        Sprite.Position = Position;
-		    }
+                Sprite.Rotation = Rotation;
+            }
 
-		    window.Draw(Sprite);
+            window.Draw(Sprite);
 		}
 
 	}

@@ -55,7 +55,6 @@ namespace super_duper_lamp.core
                 catch (Exception)
                 {
                     //shouldnt matter whats in here
-                    Console.WriteLine("Not a player.");
                 }
             } 
         }
@@ -72,7 +71,7 @@ namespace super_duper_lamp.core
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Not a player.");
+                    //shouldnt matter whats in here
                 }
             }
         }
@@ -82,7 +81,7 @@ namespace super_duper_lamp.core
             _entities = new List<Entity>();
 
             // Create the main window
-            RenderWindow window = new RenderWindow(new VideoMode(800, 600), "SFML Works!");
+            RenderWindow window = new RenderWindow(new VideoMode(1600, 900), "SFML Works!");
 			window.Closed += OnClose;
             window.KeyPressed += OnKeyPressed;
             window.KeyReleased += OnKeyReleased;
@@ -95,6 +94,7 @@ namespace super_duper_lamp.core
             var ply = new Player(1);
 
 		    Ent.Parent = ply;
+            ply.Position = new Vector2f(100,100);
 
 		    _entities.Add(Ent);
 		    Ent.RotateWithParent = true;
@@ -124,7 +124,9 @@ namespace super_duper_lamp.core
 
 				// Update the window
 				window.Display();
-			}
+
+                window.SetTitle(Convert.ToString(1/dt.AsSeconds()));
+            }
 		}
 	}
 }

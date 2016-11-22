@@ -10,7 +10,8 @@ namespace super_duper_lamp
         private bool _aDown;
         private bool _dDown;
 
-        private const int MoveSpeed = 500;
+        private const int MoveSpeed = 500; //per second
+        private const float RotSpeed = 90f;//per second
 
         public Player(int id) : base(id, "player", @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png")
         {
@@ -54,15 +55,15 @@ namespace super_duper_lamp
             if (_aDown)
             {
                 //moveVector.X += -MoveSpeed * dt.AsSeconds();
-                Sprite.Rotation = Sprite.Rotation + 0.01f;
+                Rotation = Rotation - (RotSpeed * dt.AsSeconds());
             }
 
             if (_dDown)
             {
-                moveVector.X += MoveSpeed * dt.AsSeconds();
+                Rotation = Rotation + (RotSpeed * dt.AsSeconds());
             }
 
-            Position += moveVector;
+            Position += Vector2Extended.Rotate(moveVector, Rotation);
         }
     }
 }
