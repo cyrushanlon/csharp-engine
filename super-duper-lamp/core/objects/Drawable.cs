@@ -2,7 +2,7 @@
 using SFML.Graphics;
 using SFML.System;
 
-namespace super_duper_lamp
+namespace super_duper_lamp.core.objects
 {
     public abstract class Drawable : Entity
 	{

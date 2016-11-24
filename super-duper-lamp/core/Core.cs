@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using super_duper_lamp.core.objects;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -22,7 +22,7 @@ namespace super_duper_lamp.core
             {
                 try // prob slow to use a try catch but whatever
                 {
-                    Drawable ent = (Drawable) e;
+                    objects.Drawable ent = (objects.Drawable) e;
 
                     ent.Draw(window);
                 }
@@ -86,10 +86,14 @@ namespace super_duper_lamp.core
 
             /////////////playground
 
-            //var Ent = new Drawable(0, "meme",
-            //    @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png");
-
-		    var ply = Objects.New("player");
+		    //var ply = Objects.New("player");
+		    var ent = Objects.New("static", new object[]
+		    {
+		        1,
+                @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png",
+                new Vector2f(200,200), 
+		        
+		    });
 
             /////////////
 

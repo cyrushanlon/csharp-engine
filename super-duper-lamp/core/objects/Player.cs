@@ -1,7 +1,7 @@
 ﻿using SFML.System;
 using SFML.Window;
 
-namespace super_duper_lamp
+namespace super_duper_lamp.core.objects
 {
     public class Player : Drawable
     {

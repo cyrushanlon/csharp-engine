@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using super_duper_lamp.core.objects;
 
 namespace super_duper_lamp.core
 {
@@ -11,28 +12,31 @@ namespace super_duper_lamp.core
         private static readonly Dictionary<string, Type> Types = new Dictionary<string, Type>()
         {
             {"player", typeof(Player)},
+            {"static", typeof(Static)},
         };
 
         public static Entity New(string type)
         {
-            var ctors = Types[type].GetConstructors();
-
-            if (ctors.Length != 0)
+            if (Types.ContainsKey(type))
             {
-                var NewEnt = (Entity) ctors[0].Invoke(new object[] {Entities.Count});
-                Entities.Add(NewEnt);
+                var ctors = Types[type].GetConstructors();
+                if (ctors.Length != 0)
+                {
+                    var NewEnt = (Entity) ctors[0].Invoke(new object[] {Entities.Count});
+                    Entities.Add(NewEnt);
 
-                return NewEnt;
+                    return NewEnt;
+                }
             }
-            else
-            {
-                return null;
-            }
+
+            Console.Out.WriteLine("Type " + type + " not supported by Objects.");
+
+            return null;
         }
 
         public static Entity New(string type, object[] args)
         {
-            var ctors = Types[type].GetConstructors(BindingFlags.Public);
+            var ctors = Types[type].GetConstructors();
             var NewEnt = (Entity)ctors[0].Invoke(args);
 
             Entities.Add(NewEnt);
