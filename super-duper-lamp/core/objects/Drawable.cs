@@ -4,7 +4,7 @@ using SFML.System;
 
 namespace super_duper_lamp
 {
-    public class Drawable : Entity
+    public abstract class Drawable : Entity
 	{
 		protected Sprite Sprite { get; set; }
         public Drawable Parent { get; set; }
@@ -22,6 +22,8 @@ namespace super_duper_lamp
             Sprite = new Sprite {Texture = texture};
 
             Origin = new Vector2f(Sprite.GetLocalBounds().Width/2, Sprite.GetLocalBounds().Height / 2);
+
+		    RotateWithParent = true;
 		}
 
 		public virtual void Draw(RenderWindow window)

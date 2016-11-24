@@ -8,11 +8,9 @@ namespace super_duper_lamp.core
 {
     public static class Core
     {
-        private static List<Entity> _entities;
-
         private static void Think(Time dt)
         {
-            foreach (var e in _entities)
+            foreach (var e in Objects.Entities)
             {
                 e.Think(dt);
             }
@@ -20,7 +18,7 @@ namespace super_duper_lamp.core
 
         private static void Draw(RenderWindow window)
         {
-            foreach (var e in _entities)
+            foreach (var e in Objects.Entities)
             {
                 try // prob slow to use a try catch but whatever
                 {
@@ -44,7 +42,7 @@ namespace super_duper_lamp.core
 
         private static void OnKeyPressed(object sender, EventArgs ev)
         {
-            foreach (var e in _entities)
+            foreach (var e in Objects.Entities)
             {
                 try
                 {
@@ -61,7 +59,7 @@ namespace super_duper_lamp.core
 
         private static void OnKeyReleased(object sender, EventArgs ev)
         {
-            foreach (var e in _entities)
+            foreach (var e in Objects.Entities)
             {
                 try
                 {
@@ -78,8 +76,6 @@ namespace super_duper_lamp.core
 
         public static void Run()
 		{
-            _entities = new List<Entity>();
-
             // Create the main window
             RenderWindow window = new RenderWindow(new VideoMode(1600, 900), "SFML Works!");
 			window.Closed += OnClose;
@@ -88,21 +84,16 @@ namespace super_duper_lamp.core
 
             Color windowColor = new Color(0, 0, 0);
 
-            var Ent = new Drawable(0, "meme",
-                @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png");
+            /////////////playground
 
-            var ply = new Player(1);
+            //var Ent = new Drawable(0, "meme",
+            //    @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png");
 
-		    Ent.Parent = ply;
-            ply.Position = new Vector2f(100,100);
+		    var ply = Objects.New("player");
 
-		    _entities.Add(Ent);
-		    Ent.RotateWithParent = true;
+            /////////////
 
-		    Ent.Position = new Vector2f(75, 75);
-            _entities.Add(ply);
-
-	        Clock clock = new Clock();
+            Clock clock = new Clock();
 
             // Start the game loop
             while (window.IsOpen)

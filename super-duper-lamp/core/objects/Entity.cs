@@ -2,7 +2,7 @@
 
 namespace super_duper_lamp
 {
-    public class Entity
+    public abstract class Entity
     {
         public Entity(int id, string name)
         {

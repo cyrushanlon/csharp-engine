@@ -55,13 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="core\Core.cs" />
+    <Compile Include="core\Objects.cs" />
     <Compile Include="core\ResourceManager.cs" />
-    <Compile Include="Drawable.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="core\objects\Drawable.cs" />
+    <Compile Include="core\objects\Entity.cs" />
+    <Compile Include="core\objects\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vector2Helpers.cs" />
+    <Compile Include="core\utils\Vector2Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
