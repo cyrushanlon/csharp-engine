@@ -14,7 +14,7 @@ namespace super_duper_lamp.core
             {"player", typeof(Player)},
             {"static", typeof(Static)},
         };
-
+/*
         public static Entity New(string type)
         {
             if (Types.ContainsKey(type))
@@ -42,6 +42,17 @@ namespace super_duper_lamp.core
             Entities.Add(NewEnt);
 
             return NewEnt;
+        }
+*/
+        public static int NextID()
+        {
+            return Entities.Count;
+        }
+
+        public static void Add(Entity newEnt)
+        {
+            newEnt.ID = NextID();
+            Entities.Add(newEnt);
         }
     }
 }

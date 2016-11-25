@@ -16,9 +16,9 @@ namespace super_duper_lamp.core.objects
 
 	    private Texture texture;
 
-        public Drawable(int id, string name, string pathToTexture) : base(id, name)
-		{
-			texture = new Texture(pathToTexture);
+        public Drawable(string name, string pathToTexture) : base(name)
+        {
+            texture = ResourceManager.GetResource(pathToTexture);
             Sprite = new Sprite {Texture = texture};
 
             Origin = new Vector2f(Sprite.GetLocalBounds().Width/2, Sprite.GetLocalBounds().Height / 2);

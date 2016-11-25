@@ -87,13 +87,15 @@ namespace super_duper_lamp.core
             /////////////playground
 
 		    //var ply = Objects.New("player");
+            /*
 		    var ent = Objects.New("static", new object[]
 		    {
 		        1,
-                @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png",
-                new Vector2f(200,200), 
-		        
+               "textures/penios.png",
+                new Vector2f(200,200),
 		    });
+            */
+		    var ply = new Player();
 
             /////////////
 

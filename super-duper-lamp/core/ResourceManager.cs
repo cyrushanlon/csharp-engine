@@ -5,16 +5,18 @@ using SFML.Graphics;
 
 namespace super_duper_lamp.core
 {
-	class ResourceManager
+	public static class ResourceManager
 	{
-		private Dictionary<string,Tuple<Texture, int> > resources;
+	    private const string ResourcePath = @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp";
+		private static Dictionary<string,Tuple<Texture, int> > resources = new Dictionary<string, Tuple<Texture, int>>();
 
+ /*
 	    public ResourceManager(Dictionary<string, Tuple<Texture, int>> resources)
 	    {
 	        this.resources = resources;
 	    }
-
-	    public Texture GetResource(string path)
+*/
+	    public static Texture GetResource(string path)
 		{
 			if (resources.ContainsKey(path))
 			{
@@ -26,13 +28,13 @@ namespace super_duper_lamp.core
 			} 
 			else 
 			{
-				var tex = new Texture(path);
+				var tex = new Texture(ResourcePath + @"\" + path);
 				resources.Add(path, new Tuple<Texture, int>(tex, 1));
 				return tex;
 			}
 		}
 
-		public void RemoveResource(string path)
+		public static void RemoveResource(string path)
 		{
 			if (resources.ContainsKey(path))
 			{

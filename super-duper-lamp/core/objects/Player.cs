@@ -13,7 +13,7 @@ namespace super_duper_lamp.core.objects
         private const int MoveSpeed = 500; //per second
         private const float RotSpeed = 90f;//per second
 
-        public Player(int id) : base(id, "player", @"E:\+ 00 + Projects\VS 2013\C#\super-duper-lamp\super-duper-lamp\textures\penios.png")
+        public Player() : base("player", @"textures\penios.png")
         {
             _wDown = false;
         }
