@@ -95,7 +95,7 @@ namespace super_duper_lamp.core
                 new Vector2f(200,200),
 		    });
             */
-		    var ply = new Player();
+		    var ply = new Player("player","textures/penios.png");
 
             /////////////
 

@@ -1,24 +1,25 @@
-﻿using SFML.System;
+﻿using System;
+using SFML.System;
 using SFML.Window;
 
 namespace super_duper_lamp.core.objects
 {
-    public class Player : Drawable
+    public class Player : Dynamic
     {
         private bool _wDown;
         private bool _sDown;
         private bool _aDown;
         private bool _dDown;
 
-        private const int MoveSpeed = 500; //per second
-        private const float RotSpeed = 90f;//per second
+        private const int Acceleration = 200; //per second per second
+        private const float AngAcceleration = 90;//per second per second
 
-        public Player() : base("player", @"textures\penios.png")
+        public Player(string name, string pathToTexture) : base(name, pathToTexture)
         {
             _wDown = false;
         }
 
-        public void Input(object sender, KeyEventArgs e, bool up)
+        public virtual void Input(object sender, KeyEventArgs e, bool up)
         {
             if (e.Code.Equals(Keyboard.Key.W))
             {
@@ -40,30 +41,27 @@ namespace super_duper_lamp.core.objects
 
         public override void Think(Time dt)
         {
-            var moveVector = new Vector2f(0,0);
+            if (_aDown && !_dDown)
+            {
+                //moveVector.X += -MoveSpeed * dt.AsSeconds();
+                AngVelocity -= (AngAcceleration * dt.AsSeconds());
+            }
+
+            if (_dDown && !_aDown)
+            {
+                AngVelocity += (AngAcceleration * dt.AsSeconds());
+            }
 
             if (_wDown)
             {
-                moveVector.Y += -MoveSpeed * dt.AsSeconds();
+                Velocity += Vector2Extended.Rotate(new Vector2f(0, -Acceleration), Rotation) * dt.AsSeconds();
             }
-
-            if (_sDown)
+            else if (_sDown)
             {
-                moveVector.Y += MoveSpeed * dt.AsSeconds();
+                Velocity += Vector2Extended.Rotate(new Vector2f(0, Acceleration), Rotation) * dt.AsSeconds();
             }
 
-            if (_aDown)
-            {
-                //moveVector.X += -MoveSpeed * dt.AsSeconds();
-                Rotation = Rotation - (RotSpeed * dt.AsSeconds());
-            }
-
-            if (_dDown)
-            {
-                Rotation = Rotation + (RotSpeed * dt.AsSeconds());
-            }
-
-            Position += Vector2Extended.Rotate(moveVector, Rotation);
+            base.Think(dt);
         }
     }
 }
