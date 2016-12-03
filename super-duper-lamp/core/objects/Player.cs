@@ -6,50 +6,51 @@ namespace super_duper_lamp.core.objects
 {
     public class Player : Dynamic
     {
-        private bool _wDown;
-        private bool _sDown;
-        private bool _aDown;
-        private bool _dDown;
+        public bool WDown;
+        public bool SDown;
+        public bool ADown;
+        public bool DDown;
 
         private const int Acceleration = 200; //per second per second
         private const float AngAcceleration = 90;//per second per second
 
         public Player(string name, string pathToTexture) : base(name, pathToTexture)
         {
-            _wDown = false;
+            WDown = false;
         }
 
         public virtual void Input(object sender, KeyEventArgs e, bool up)
         {
             if (e.Code.Equals(Keyboard.Key.W))
             {
-                _wDown = up;
+                WDown = up;
             }
             else if (e.Code.Equals(Keyboard.Key.S))
             {
-                _sDown = up;
+                SDown = up;
             }
             else if (e.Code.Equals(Keyboard.Key.A))
             {
-                _aDown = up;
+                ADown = up;
             }
             else if (e.Code.Equals(Keyboard.Key.D))
             {
-                _dDown = up;
+                DDown = up;
             }
         }
 
         public override void Think(Time dt)
         {
+            /*
             if (_aDown && !_dDown)
             {
                 //moveVector.X += -MoveSpeed * dt.AsSeconds();
-                AngVelocity -= (AngAcceleration * dt.AsSeconds());
+                AngVelocity -= AngAcceleration * dt.AsSeconds();
             }
 
             if (_dDown && !_aDown)
             {
-                AngVelocity += (AngAcceleration * dt.AsSeconds());
+                AngVelocity += AngAcceleration * dt.AsSeconds();
             }
 
             if (_wDown)
@@ -60,6 +61,8 @@ namespace super_duper_lamp.core.objects
             {
                 Velocity += Vector2Extended.Rotate(new Vector2f(0, Acceleration), Rotation) * dt.AsSeconds();
             }
+
+            */
 
             base.Think(dt);
         }

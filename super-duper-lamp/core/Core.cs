@@ -1,5 +1,6 @@
 ﻿using System;
 using super_duper_lamp.core.objects;
+using super_duper_lamp.game.objects;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -95,7 +96,7 @@ namespace super_duper_lamp.core
                 new Vector2f(200,200),
 		    });
             */
-		    var ply = new Player("player","textures/penios.png");
+		    var ply = new Ship("good ship", "textures/penios.png");
 
             /////////////
 

@@ -48,8 +48,6 @@ namespace super_duper_lamp.core.objects
                 }
             }
 
-            Console.WriteLine(Vector2Extended.Length(Velocity));
-
             Rotation += AngVelocity * dt.AsSeconds();
 
             Position += Velocity * dt.AsSeconds();

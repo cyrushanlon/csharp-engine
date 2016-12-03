@@ -62,6 +62,8 @@
     <Compile Include="core\objects\Drawable.cs" />
     <Compile Include="core\objects\Entity.cs" />
     <Compile Include="core\objects\Player.cs" />
+    <Compile Include="game\objects\Engine.cs" />
+    <Compile Include="game\objects\Part.cs" />
     <Compile Include="game\objects\Ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
