@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\Camera.cs" />
     <Compile Include="core\Core.cs" />
     <Compile Include="core\Objects.cs" />
     <Compile Include="core\objects\Dynamic.cs" />

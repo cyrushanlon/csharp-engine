@@ -100,6 +100,9 @@ namespace super_duper_lamp.core
 
             /////////////
 
+            Camera camera = new Camera();
+		    camera.Target = ply;
+
             Clock clock = new Clock();
 
             // Start the game loop
@@ -113,12 +116,14 @@ namespace super_duper_lamp.core
 
                 //think on all entities
 			    Think(dt);
+                camera.Think(dt);
 
 				// Clear screen
 				window.Clear(windowColor);
 
                 //draw on all entities
-				Draw(window);
+                camera.UseCamera(window);
+                Draw(window);
 
 				// Update the window
 				window.Display();
