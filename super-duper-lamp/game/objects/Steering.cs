@@ -25,9 +25,11 @@ namespace super_duper_lamp.game.objects
             //needs to be moved
             if (((Player)Parent).MouseLDown)
             {
-                var MousePos = window.MapPixelToCoords(Mouse.GetPosition(window)) + Parent.Position;
+                //Doesnt work when moving away from 0,0
+                var MousePos = Mouse.GetPosition(window) - new Vector2i((int)window.Size.X / 2, (int)window.Size.Y / 2);
+                Console.WriteLine(MousePos);
 
-                Parent.Rotation = (float)(Math.Atan2(MousePos.Y - Parent.Position.Y, MousePos.X - Parent.Position.X) * (180.0 / Math.PI)) + 90;
+                Parent.Rotation = (float)(Math.Atan2(MousePos.Y, MousePos.X) * (180.0 / Math.PI)) + 90;
             }
 
             base.Draw(window);
