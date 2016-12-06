@@ -10,6 +10,8 @@ namespace super_duper_lamp.core.objects
         public bool SDown;
         public bool ADown;
         public bool DDown;
+        public bool MouseLDown;
+        public bool MouseRDown;
 
         private const int Acceleration = 200; //per second per second
         private const float AngAcceleration = 90;//per second per second
@@ -19,7 +21,7 @@ namespace super_duper_lamp.core.objects
             WDown = false;
         }
 
-        public virtual void Input(object sender, KeyEventArgs e, bool up)
+        public virtual void KeyInput(object sender, KeyEventArgs e, bool up)
         {
             if (e.Code.Equals(Keyboard.Key.W))
             {
@@ -37,6 +39,19 @@ namespace super_duper_lamp.core.objects
             {
                 DDown = up;
             }
+        }
+        public virtual void MouseBtnInput(object sender, MouseButtonEventArgs e, bool up)
+        {
+
+            if (e.Button.Equals(Mouse.Button.Left))
+            {
+                MouseLDown = up;
+            }
+            else if (e.Button.Equals(Mouse.Button.Right))
+            {
+                MouseRDown = up;
+            }
+           
         }
 
         public override void Think(Time dt)

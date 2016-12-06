@@ -66,6 +66,7 @@
     <Compile Include="game\objects\Engine.cs" />
     <Compile Include="game\objects\Part.cs" />
     <Compile Include="game\objects\Ship.cs" />
+    <Compile Include="game\objects\Steering.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="core\utils\Vector2Helpers.cs" />

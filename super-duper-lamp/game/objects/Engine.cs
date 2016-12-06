@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using super_duper_lamp.core.objects;
+﻿using super_duper_lamp.core.objects;
 using SFML.System;
 
 namespace super_duper_lamp.game.objects
@@ -37,7 +32,9 @@ namespace super_duper_lamp.game.objects
                 }
             }
 
-            ((Ship)Parent).Velocity += Vector2Extended.Rotate(new Vector2f(0, -_acceleration), Rotation) * dt.AsSeconds();
+            if (((Player)Parent).WDown)
+                ((Ship)Parent).Velocity -= Vector2Extended.Rotate(new Vector2f(0, -_acceleration), Rotation + Parent.Rotation) * dt.AsSeconds();
+
             base.Think(dt);
         }
     }

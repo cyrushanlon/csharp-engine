@@ -49,7 +49,7 @@ namespace super_duper_lamp.core
                 {
                     Player ent = (Player)e;
 
-                    ent.Input(sender, (KeyEventArgs)ev, true);
+                    ent.KeyInput(sender, (KeyEventArgs)ev, true);
                 }
                 catch (Exception)
                 {
@@ -57,7 +57,6 @@ namespace super_duper_lamp.core
                 }
             } 
         }
-
         private static void OnKeyReleased(object sender, EventArgs ev)
         {
             foreach (var e in Objects.Entities)
@@ -66,7 +65,40 @@ namespace super_duper_lamp.core
                 {
                     Player ent = (Player)e;
 
-                    ent.Input(sender, (KeyEventArgs)ev, false);
+                    ent.KeyInput(sender, (KeyEventArgs)ev, false);
+                }
+                catch (Exception)
+                {
+                    //shouldnt matter whats in here
+                }
+            }
+        }
+
+        private static void OnMousePressed(object sender, EventArgs ev)
+        {
+            foreach (var e in Objects.Entities)
+            {
+                try
+                {
+                    Player ent = (Player)e;
+
+                    ent.MouseBtnInput(sender, (MouseButtonEventArgs)ev, true);
+                }
+                catch (Exception)
+                {
+                    //shouldnt matter whats in here
+                }
+            }
+        }
+        private static void OnMouseReleased(object sender, EventArgs ev)
+        {
+            foreach (var e in Objects.Entities)
+            {
+                try
+                {
+                    Player ent = (Player)e;
+
+                    ent.MouseBtnInput(sender, (MouseButtonEventArgs)ev, false);
                 }
                 catch (Exception)
                 {
@@ -83,6 +115,9 @@ namespace super_duper_lamp.core
             window.KeyPressed += OnKeyPressed;
             window.KeyReleased += OnKeyReleased;
 
+		    window.MouseButtonPressed += OnMousePressed;
+            window.MouseButtonReleased += OnMouseReleased;
+
             Color windowColor = new Color(0, 0, 0);
 
             /////////////playground
@@ -96,6 +131,8 @@ namespace super_duper_lamp.core
                 new Vector2f(200,200),
 		    });
             */
+		    new Static("textures/penios.png", new Vector2f(0, 0));
+
 		    var ply = new Ship("good ship", "textures/penios.png");
 
             /////////////
