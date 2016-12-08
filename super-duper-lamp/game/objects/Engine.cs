@@ -9,7 +9,7 @@ namespace super_duper_lamp.game.objects
         {
         }
 
-        private float _acceleration = -50; //pixels/s
+        private float _acceleration = 100; //pixels/s
         private float _restingRotation = 0;
         private bool _vectoringOn = true;
         private Vector2f _vectoringMinMax = new Vector2f(-30, 30);
@@ -33,7 +33,7 @@ namespace super_duper_lamp.game.objects
             }
 
             if (((Player)Parent).WDown)
-                ((Ship)Parent).Velocity -= Vector2Extended.Rotate(new Vector2f(0, -_acceleration), Rotation + Parent.Rotation) * dt.AsSeconds();
+                ((Ship)Parent).Velocity -= Vector2Extended.Rotate(new Vector2f(0, _acceleration), Rotation + Parent.Rotation) * dt.AsSeconds();
 
             base.Think(dt);
         }

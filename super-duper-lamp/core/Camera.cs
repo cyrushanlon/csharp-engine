@@ -17,11 +17,12 @@ namespace super_duper_lamp.core
         public Camera()
         {
             _view = new View(new Vector2f(0, 0), new Vector2f(1920, 1080));
+            _view.Zoom(4f);
         }
 
-        public void UseCamera(RenderWindow window)
+        public void UseCamera()
         {
-            window.SetView(_view);
+            Window.W.SetView(_view);
         }
 
         public void Input(object sender, KeyEventArgs e, bool up)

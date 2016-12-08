@@ -26,7 +26,7 @@ namespace super_duper_lamp.core.objects
 		    RotateWithParent = true;
 		}
 
-		public virtual void Draw(RenderWindow window)
+		public virtual void Draw()
 		{
 		    Sprite.Origin = Origin;
 
@@ -50,7 +50,7 @@ namespace super_duper_lamp.core.objects
                 Sprite.Rotation = Rotation;
             }
 
-            window.Draw(Sprite);
+            Window.W.Draw(Sprite);
 		}
 
 	}

@@ -4,6 +4,7 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
+
 namespace super_duper_lamp.game.objects
 {
     class Steering : Part
@@ -16,23 +17,21 @@ namespace super_duper_lamp.game.objects
         public override void Think(Time dt)
         {
             //tween angular velocity so that the movement is smooth and more difficult to 360, takes a time for vel to catch up
-            
-            base.Think(dt);
-        }
 
-        public override void Draw(RenderWindow window)
-        {
-            //needs to be moved
             if (((Player)Parent).MouseLDown)
             {
                 //Doesnt work when moving away from 0,0
-                var MousePos = Mouse.GetPosition(window) - new Vector2i((int)window.Size.X / 2, (int)window.Size.Y / 2);
-                Console.WriteLine(MousePos);
+                var MousePos = Mouse.GetPosition(core.Window.W) - new Vector2i((int)core.Window.W.Size.X / 2, (int)core.Window.W.Size.Y / 2);
 
                 Parent.Rotation = (float)(Math.Atan2(MousePos.Y, MousePos.X) * (180.0 / Math.PI)) + 90;
             }
 
-            base.Draw(window);
+            base.Think(dt);
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace super_duper_lamp.core
             }
         }
 
-        private static void Draw(RenderWindow window)
+        private static void Draw()
         {
             foreach (var e in Objects.Entities)
             {
@@ -25,7 +25,7 @@ namespace super_duper_lamp.core
                 {
                     objects.Drawable ent = (objects.Drawable) e;
 
-                    ent.Draw(window);
+                    ent.Draw();
                 }
                 catch (Exception)
                 {
@@ -110,13 +110,15 @@ namespace super_duper_lamp.core
         public static void Run()
 		{
             // Create the main window
-            RenderWindow window = new RenderWindow(new VideoMode(1600, 900), "SFML Works!");
-			window.Closed += OnClose;
-            window.KeyPressed += OnKeyPressed;
-            window.KeyReleased += OnKeyReleased;
+            //RenderWindow window = new RenderWindow(new VideoMode(1600, 900), "SFML Works!");
+            Window.Create(new VideoMode(1600, 900), "SFML Works!");
 
-		    window.MouseButtonPressed += OnMousePressed;
-            window.MouseButtonReleased += OnMouseReleased;
+			Window.W.Closed += OnClose;
+            Window.W.KeyPressed += OnKeyPressed;
+            Window.W.KeyReleased += OnKeyReleased;
+
+		    Window.W.MouseButtonPressed += OnMousePressed;
+            Window.W.MouseButtonReleased += OnMouseReleased;
 
             Color windowColor = new Color(0, 0, 0);
 
@@ -143,29 +145,29 @@ namespace super_duper_lamp.core
             Clock clock = new Clock();
 
             // Start the game loop
-            while (window.IsOpen)
+            while (Window.W.IsOpen)
             {
 
                 Time dt = clock.Restart();
 
 				// Process events
-				window.DispatchEvents();
+				Window.W.DispatchEvents();
 
                 //think on all entities
 			    Think(dt);
                 camera.Think(dt);
 
 				// Clear screen
-				window.Clear(windowColor);
+				Window.W.Clear(windowColor);
 
                 //draw on all entities
-                camera.UseCamera(window);
-                Draw(window);
+                camera.UseCamera();
+                Draw();
 
 				// Update the window
-				window.Display();
+				Window.W.Display();
 
-                window.SetTitle(Convert.ToString(1/dt.AsSeconds()));
+                Window.W.SetTitle(Convert.ToString(1/dt.AsSeconds()));
             }
 		}
 	}
