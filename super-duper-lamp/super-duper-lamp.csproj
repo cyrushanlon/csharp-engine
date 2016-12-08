@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FarseerPhysics">
+      <HintPath>..\..\..\Libs\Farseer Physics Engine 3.5\bin\Debug\FarseerPhysics.dll</HintPath>
+    </Reference>
     <Reference Include="sfmlnet-audio-2">
       <HintPath>..\..\..\Libs\SFML.Net-2.2\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
@@ -63,7 +66,7 @@
     <Compile Include="core\objects\Drawable.cs" />
     <Compile Include="core\objects\Entity.cs" />
     <Compile Include="core\objects\Player.cs" />
-    <Compile Include="core\Window.cs" />
+    <Compile Include="core\Global.cs" />
     <Compile Include="game\objects\Engine.cs" />
     <Compile Include="game\objects\Part.cs" />
     <Compile Include="game\objects\Ship.cs" />
@@ -103,7 +106,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="core\particles\" />
+    <Folder Include="core\physics\" />
     <Folder Include="core\ui\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

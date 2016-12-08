@@ -1,4 +1,6 @@
 ﻿using System;
+using FarseerPhysics.Dynamics;
+using Microsoft.Xna.Framework;
 using super_duper_lamp.core.objects;
 using super_duper_lamp.game.objects;
 using SFML.Graphics;
@@ -111,20 +113,20 @@ namespace super_duper_lamp.core
 		{
             // Create the main window
             //RenderWindow window = new RenderWindow(new VideoMode(1600, 900), "SFML Works!");
-            Window.Create(new VideoMode(1600, 900), "SFML Works!");
+            Global.Create(new VideoMode(1600, 900), "SFML Works!");
 
-			Window.W.Closed += OnClose;
-            Window.W.KeyPressed += OnKeyPressed;
-            Window.W.KeyReleased += OnKeyReleased;
+			Global.W.Closed += OnClose;
+            Global.W.KeyPressed += OnKeyPressed;
+            Global.W.KeyReleased += OnKeyReleased;
 
-		    Window.W.MouseButtonPressed += OnMousePressed;
-            Window.W.MouseButtonReleased += OnMouseReleased;
+		    Global.W.MouseButtonPressed += OnMousePressed;
+            Global.W.MouseButtonReleased += OnMouseReleased;
 
             Color windowColor = new Color(0, 0, 0);
 
             /////////////playground
 
-		    //var ply = Objects.New("player");
+            //var ply = Objects.New("player");
             /*
 		    var ent = Objects.New("static", new object[]
 		    {
@@ -133,7 +135,7 @@ namespace super_duper_lamp.core
                 new Vector2f(200,200),
 		    });
             */
-		    new Static("textures/penios.png", new Vector2f(0, 0));
+            new Static("textures/penios.png", new Vector2f(0, 0));
 
 		    var ply = new Ship("good ship", "textures/penios.png");
 
@@ -145,29 +147,33 @@ namespace super_duper_lamp.core
             Clock clock = new Clock();
 
             // Start the game loop
-            while (Window.W.IsOpen)
+            while (Global.W.IsOpen)
             {
 
                 Time dt = clock.Restart();
 
 				// Process events
-				Window.W.DispatchEvents();
+				Global.W.DispatchEvents();
+
+                //Physics Update
+                //"This should not vary"
+                Global.World.Step(dt.AsSeconds());
 
                 //think on all entities
 			    Think(dt);
                 camera.Think(dt);
 
 				// Clear screen
-				Window.W.Clear(windowColor);
+				Global.W.Clear(windowColor);
 
                 //draw on all entities
                 camera.UseCamera();
                 Draw();
 
 				// Update the window
-				Window.W.Display();
+				Global.W.Display();
 
-                Window.W.SetTitle(Convert.ToString(1/dt.AsSeconds()));
+                Global.W.SetTitle(Convert.ToString(1/dt.AsSeconds()));
             }
 		}
 	}

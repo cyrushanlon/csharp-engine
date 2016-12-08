@@ -1,4 +1,7 @@
-﻿using super_duper_lamp.core.objects;
+﻿using System;
+using FarseerPhysics;
+using Microsoft.Xna.Framework;
+using super_duper_lamp.core.objects;
 using SFML.System;
 
 namespace super_duper_lamp.game.objects
@@ -9,7 +12,7 @@ namespace super_duper_lamp.game.objects
         {
         }
 
-        private float _acceleration = 100; //pixels/s
+        private float _acceleration = 500; //pixels/s/s
         private float _restingRotation = 0;
         private bool _vectoringOn = true;
         private Vector2f _vectoringMinMax = new Vector2f(-30, 30);
@@ -32,8 +35,14 @@ namespace super_duper_lamp.game.objects
                 }
             }
 
-            if (((Player)Parent).WDown)
-                ((Ship)Parent).Velocity -= Vector2Extended.Rotate(new Vector2f(0, _acceleration), Rotation + Parent.Rotation) * dt.AsSeconds();
+            if (((Player) Parent).WDown)
+            {
+                var Force = new Vector2f(0, _acceleration * dt.AsSeconds());
+                Force = Vector2Extended.Rotate(Force, Parent.Rotation + Rotation);
+
+                ((Dynamic) Parent).Body.ApplyForce(Vector2Extended.SFMLToXNA(Force), ConvertUnits.ToSimUnits(Vector2Extended.SFMLToXNA(Sprite.Position)));
+            }
+            //((Ship)Parent).Velocity -= Vector2Extended.Rotate(new Vector2f(0, _acceleration), Rotation + Parent.Rotation) * dt.AsSeconds();
 
             base.Think(dt);
         }

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Microsoft.Xna.Framework;
 using SFML.Graphics;
 using SFML.System;
 
@@ -31,6 +32,16 @@ namespace super_duper_lamp
         {
             var length = Convert.ToSingle(Math.Sqrt((vec.X*vec.X) + (vec.Y*vec.Y)));
             return length != 0 ? new Vector2f(vec.X / length, vec.Y / length) : vec;
+        }
+
+        public static Vector2f XNAToSFML(Vector2 In)
+        {
+            return new Vector2f(In.X, In.Y);
+        }
+
+        public static Vector2 SFMLToXNA(Vector2f In)
+        {
+            return new Vector2(In.X, In.Y);
         }
     }
 }

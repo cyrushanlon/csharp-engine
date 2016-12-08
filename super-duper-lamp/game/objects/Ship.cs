@@ -12,6 +12,7 @@ namespace super_duper_lamp.game.objects
         public Ship(string name, string pathToTexture) : base(name, pathToTexture)
         {
             Eng = new Engine("textures/penios.png", this);
+            Eng.Position = new Vector2f(0, 500);
             Steer = new Steering("textures/penios.png", this);
             Sprite.Scale = new Vector2f(0.5f, 0.5f);
         }
