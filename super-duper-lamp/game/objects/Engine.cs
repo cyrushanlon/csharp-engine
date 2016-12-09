@@ -12,7 +12,7 @@ namespace super_duper_lamp.game.objects
         {
         }
 
-        private float _acceleration = 500; //pixels/s/s
+        private float _acceleration = 2000; //pixels/s/s
         private float _restingRotation = 0;
         private bool _vectoringOn = true;
         private Vector2f _vectoringMinMax = new Vector2f(-30, 30);
@@ -34,10 +34,10 @@ namespace super_duper_lamp.game.objects
                     Rotation = _restingRotation;
                 }
             }
-
+            
             if (((Player) Parent).WDown)
             {
-                var Force = new Vector2f(0, _acceleration * dt.AsSeconds());
+                var Force = new Vector2f(0, -_acceleration * dt.AsSeconds());
                 Force = Vector2Extended.Rotate(Force, Parent.Rotation + Rotation);
 
                 ((Dynamic) Parent).Body.ApplyForce(Vector2Extended.SFMLToXNA(Force), ConvertUnits.ToSimUnits(Vector2Extended.SFMLToXNA(Sprite.Position)));

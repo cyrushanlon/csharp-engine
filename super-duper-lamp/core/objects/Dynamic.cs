@@ -69,8 +69,9 @@ namespace super_duper_lamp.core.objects
             Position += Velocity * dt.AsSeconds();
 
             */
+
             Rotation = (float) (Body.Rotation*(180.0/Math.PI));
-            Position = new Vector2f(ConvertUnits.ToDisplayUnits(Body.Position.X), -ConvertUnits.ToDisplayUnits(Body.Position.Y));
+            Position = new Vector2f(ConvertUnits.ToDisplayUnits(Body.Position.X), ConvertUnits.ToDisplayUnits(Body.Position.Y));
         }
     }
 }

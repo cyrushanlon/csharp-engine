@@ -149,29 +149,29 @@ namespace super_duper_lamp.core
             // Start the game loop
             while (Global.W.IsOpen)
             {
-
-                Time dt = clock.Restart();
+                Time dt = clock.ElapsedTime;
 
 				// Process events
 				Global.W.DispatchEvents();
 
-                //Physics Update
-                //"This should not vary"
-                Global.World.Step(dt.AsSeconds());
+                //lock FPS to 144
+                if (dt.AsSeconds() > 1/144f) {
 
-                //think on all entities
-			    Think(dt);
-                camera.Think(dt);
+                    Global.World.Step(1/144f);
+                    Think(dt);
+                    camera.Think(dt);
+                    clock.Restart();
 
-				// Clear screen
-				Global.W.Clear(windowColor);
+                    // Clear screen
+                    Global.W.Clear(windowColor);
 
-                //draw on all entities
-                camera.UseCamera();
-                Draw();
+                    //draw on all entities
+                    camera.UseCamera();
+                    Draw();
 
-				// Update the window
-				Global.W.Display();
+                    // Update the window
+                    Global.W.Display();
+                }
 
                 Global.W.SetTitle(Convert.ToString(1/dt.AsSeconds()));
             }
