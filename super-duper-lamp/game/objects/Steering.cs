@@ -20,7 +20,7 @@ namespace super_duper_lamp.game.objects
 
             if (((Player)Parent).MouseLDown)
             {
-                var MousePos = Mouse.GetPosition(core.Global.W) - new Vector2i((int)core.Global.W.Size.X / 2, (int)core.Global.W.Size.Y / 2);
+                var MousePos = Mouse.GetPosition(core.G.Window) - new Vector2i((int)core.G.Window.Size.X / 2, (int)core.G.Window.Size.Y / 2);
 
                 Parent.Rotation = (float)(Math.Atan2(MousePos.Y, MousePos.X) * (180.0 / Math.PI)) + 90;
             }

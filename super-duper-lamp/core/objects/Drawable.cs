@@ -50,7 +50,7 @@ namespace super_duper_lamp.core.objects
                 Sprite.Rotation = Rotation;
             }
 
-            Global.W.Draw(Sprite);
+            G.Window.Draw(Sprite);
 		}
 
 	}

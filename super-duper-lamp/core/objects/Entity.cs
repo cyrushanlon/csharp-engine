@@ -8,7 +8,7 @@ namespace super_duper_lamp.core.objects
         {
             _name = name;
 
-            Objects.Add(this);
+            ObjectManager.Add(this);
         }
 
         private string _name;

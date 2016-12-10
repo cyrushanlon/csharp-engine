@@ -13,17 +13,18 @@ namespace super_duper_lamp.core
     {
         private static void Think(Time dt)
         {
-            foreach (var e in Objects.Entities)
+            foreach (var e in ObjectManager.Entities)
             {
                 e.Think(dt);
             }
         }
 
+        //need to remove type cast
         private static void Draw()
         {
-            foreach (var e in Objects.Entities)
+            foreach (var e in ObjectManager.Entities)
             {
-                try // prob slow to use a try catch but whatever
+                try
                 {
                     objects.Drawable ent = (objects.Drawable) e;
 
@@ -43,84 +44,18 @@ namespace super_duper_lamp.core
 			window.Close();
 		}
 
-        private static void OnKeyPressed(object sender, EventArgs ev)
-        {
-            foreach (var e in Objects.Entities)
-            {
-                try
-                {
-                    Player ent = (Player)e;
-
-                    ent.KeyInput(sender, (KeyEventArgs)ev, true);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
-            } 
-        }
-        private static void OnKeyReleased(object sender, EventArgs ev)
-        {
-            foreach (var e in Objects.Entities)
-            {
-                try
-                {
-                    Player ent = (Player)e;
-
-                    ent.KeyInput(sender, (KeyEventArgs)ev, false);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
-            }
-        }
-
-        private static void OnMousePressed(object sender, EventArgs ev)
-        {
-            foreach (var e in Objects.Entities)
-            {
-                try
-                {
-                    Player ent = (Player)e;
-
-                    ent.MouseBtnInput(sender, (MouseButtonEventArgs)ev, true);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
-            }
-        }
-        private static void OnMouseReleased(object sender, EventArgs ev)
-        {
-            foreach (var e in Objects.Entities)
-            {
-                try
-                {
-                    Player ent = (Player)e;
-
-                    ent.MouseBtnInput(sender, (MouseButtonEventArgs)ev, false);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
-            }
-        }
-
         public static void Run()
 		{
             // Create the main window
             //RenderWindow window = new RenderWindow(new VideoMode(1600, 900), "SFML Works!");
-            Global.Create(new VideoMode(1600, 900), "SFML Works!");
+            G.Create(new VideoMode(1600, 900), "SFML Works!");
 
-			Global.W.Closed += OnClose;
-            Global.W.KeyPressed += OnKeyPressed;
-            Global.W.KeyReleased += OnKeyReleased;
+			G.Window.Closed += OnClose;
+            G.Window.KeyPressed += InputManager.OnKeyPressed;
+            G.Window.KeyReleased += InputManager.OnKeyReleased;
 
-		    Global.W.MouseButtonPressed += OnMousePressed;
-            Global.W.MouseButtonReleased += OnMouseReleased;
+		    G.Window.MouseButtonPressed += InputManager.OnMousePressed;
+            G.Window.MouseButtonReleased += InputManager.OnMouseReleased;
 
             Color windowColor = new Color(0, 0, 0);
 
@@ -147,33 +82,32 @@ namespace super_duper_lamp.core
             Clock clock = new Clock();
 
             // Start the game loop
-            while (Global.W.IsOpen)
+            while (G.Window.IsOpen)
             {
                 Time dt = clock.ElapsedTime;
 
 				// Process events
-				Global.W.DispatchEvents();
+				G.Window.DispatchEvents();
 
                 //lock FPS to 144
+                //dt related stuff
                 if (dt.AsSeconds() > 1/144f) {
-
-                    Global.World.Step(1/144f);
+                    G.World.Step(1/144f);
                     Think(dt);
                     camera.Think(dt);
                     clock.Restart();
-
-                    // Clear screen
-                    Global.W.Clear(windowColor);
-
-                    //draw on all entities
-                    camera.UseCamera();
-                    Draw();
-
-                    // Update the window
-                    Global.W.Display();
                 }
 
-                Global.W.SetTitle(Convert.ToString(1/dt.AsSeconds()));
+                //draw
+                // Clear screen
+                G.Window.Clear(windowColor);
+                //draw on all entities
+                camera.UseCamera();
+                Draw();
+                // Update the window
+                G.Window.Display();
+
+                G.Window.SetTitle(Convert.ToString(1/dt.AsSeconds()));
             }
 		}
 	}

@@ -22,7 +22,7 @@ namespace super_duper_lamp.core
 
         public void UseCamera()
         {
-            Global.W.SetView(_view);
+            G.Window.SetView(_view);
         }
 
         public void Input(object sender, KeyEventArgs e, bool up)

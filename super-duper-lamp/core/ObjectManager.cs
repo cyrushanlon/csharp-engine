@@ -5,7 +5,7 @@ using super_duper_lamp.core.objects;
 
 namespace super_duper_lamp.core
 {
-    public static class Objects
+    public static class ObjectManager
     {
         public static List<Entity> Entities { get; } = new List<Entity>();
 

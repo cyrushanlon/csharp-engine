@@ -14,7 +14,7 @@ namespace super_duper_lamp.core.objects
         {
             _maxSpeedSqrd = MaxSpeed*MaxSpeed;
 
-            Body = new Body(Global.World, new Vector2(0f,0f));
+            Body = new Body(G.World, new Vector2(0f,0f));
             Body.BodyType = BodyType.Dynamic;
             Body.Friction = 0;
 
