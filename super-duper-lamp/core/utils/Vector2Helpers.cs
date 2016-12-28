@@ -1,10 +1,9 @@
 ﻿
 using System;
 using Microsoft.Xna.Framework;
-using SFML.Graphics;
 using SFML.System;
 
-namespace super_duper_lamp
+namespace super_duper_lamp.core.utils
 {
     public static class Vector2Extended
     {

@@ -59,7 +59,8 @@
   <ItemGroup>
     <Compile Include="core\Camera.cs" />
     <Compile Include="core\Core.cs" />
-    <Compile Include="core\Objects.cs" />
+    <Compile Include="core\InputManager.cs" />
+    <Compile Include="core\ObjectManager.cs" />
     <Compile Include="core\objects\Dynamic.cs" />
     <Compile Include="core\objects\Static.cs" />
     <Compile Include="core\ResourceManager.cs" />

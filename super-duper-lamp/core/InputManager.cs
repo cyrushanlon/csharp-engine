@@ -15,16 +15,9 @@ namespace super_duper_lamp.core
             //need to remove this type cast
             foreach (var e in ObjectManager.Entities)
             {
-                try
-                {
-                    Player ent = (Player)e;
+                var ent = e as Player;
 
-                    ent.KeyInput(sender, (KeyEventArgs)ev, true);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
+                ent?.KeyInput(sender, (KeyEventArgs)ev, true);
             }
         }
         public static void OnKeyReleased(object sender, EventArgs ev)
@@ -32,16 +25,9 @@ namespace super_duper_lamp.core
             //need to remove this type cast
             foreach (var e in ObjectManager.Entities)
             {
-                try
-                {
-                    Player ent = (Player)e;
+                var ent = e as Player;
 
-                    ent.KeyInput(sender, (KeyEventArgs)ev, false);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
+                ent?.KeyInput(sender, (KeyEventArgs)ev, false);
             }
         }
 
@@ -49,32 +35,18 @@ namespace super_duper_lamp.core
         {
             foreach (var e in ObjectManager.Entities)
             {
-                try
-                {
-                    Player ent = (Player)e;
+                var ent = e as Player;
 
-                    ent.MouseBtnInput(sender, (MouseButtonEventArgs)ev, true);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
+                ent?.MouseBtnInput(sender, (MouseButtonEventArgs)ev, true);
             }
         }
         public static void OnMouseReleased(object sender, EventArgs ev)
         {
             foreach (var e in ObjectManager.Entities)
             {
-                try
-                {
-                    Player ent = (Player)e;
+                var ent = e as Player;
 
-                    ent.MouseBtnInput(sender, (MouseButtonEventArgs)ev, false);
-                }
-                catch (Exception)
-                {
-                    //shouldnt matter whats in here
-                }
+                ent?.MouseBtnInput(sender, (MouseButtonEventArgs)ev, false);
             }
         }
     }
