@@ -7,9 +7,9 @@ using SFML.System;
 
 namespace super_duper_lamp.game.objects
 {
-    public class Engine:Part
+    public class Engine : Part
     {
-        public Engine(string pathToTexture, Ship Parent) : base("engine", pathToTexture, Parent)
+        public Engine(string pathToTexture, Ship parent) : base("engine", pathToTexture, parent)
         {
         }
 
