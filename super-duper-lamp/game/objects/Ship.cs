@@ -14,8 +14,16 @@ namespace super_duper_lamp.game.objects
         private Engine Eng2;
         private Steering Steer;
 
+        //rad/s
+        public float MaxAngularSpeed { get; set; }
+        public float MaxSpeed { get; set; }
+        public float MaxAngularAcceleration { get; set; }
+
         public Ship(string name, string pathToTexture) : base(name, pathToTexture)
         {
+            MaxAngularSpeed = (float)Math.PI/2;
+            MaxAngularAcceleration = MaxAngularSpeed / 4;
+
             Eng1 = new Engine("textures/penios.png", this);
             Eng1.Position = new Vector2f(150, 50);
             Eng2 = new Engine("textures/penios.png", this);
@@ -29,6 +37,17 @@ namespace super_duper_lamp.game.objects
         {
             Eng1.Think(dt);
             Eng2.Think(dt);
+
+            Steer.Think(dt);
+
+            //Apply shipwide constraints such as rotation speed and general speed
+            if (Math.Abs(this.Body.AngularVelocity) > MaxAngularSpeed)
+            {
+                if (this.Body.AngularVelocity > 0)
+                    this.Body.AngularVelocity = MaxAngularSpeed;
+                else
+                    this.Body.AngularVelocity = -MaxAngularSpeed;
+            }
 
             base.Think(dt);
         }

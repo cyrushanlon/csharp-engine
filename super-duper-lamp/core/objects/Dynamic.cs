@@ -17,6 +17,7 @@ namespace super_duper_lamp.core.objects
             Body = new Body(G.World, new Vector2(0f,0f));
             Body.BodyType = BodyType.Dynamic;
             Body.Friction = 0;
+            //Body.Rotation = (float)Math.PI/2;
 
             Shape = new CircleShape(1, 1);
 
