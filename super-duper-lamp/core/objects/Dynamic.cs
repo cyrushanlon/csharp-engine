@@ -71,7 +71,7 @@ namespace super_duper_lamp.core.objects
 
             */
 
-            Rotation = (float) (Body.Rotation*(180.0/Math.PI));
+            Rotation = (float) (Body.Rotation*(180.0/Math.PI)) + 90;
             Position = new Vector2f(ConvertUnits.ToDisplayUnits(Body.Position.X), ConvertUnits.ToDisplayUnits(Body.Position.Y));
         }
     }

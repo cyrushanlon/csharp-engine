@@ -21,8 +21,8 @@ namespace super_duper_lamp.game.objects
 
         public Ship(string name, string pathToTexture) : base(name, pathToTexture)
         {
-            MaxAngularSpeed = (float)Math.PI/2;
-            MaxAngularAcceleration = MaxAngularSpeed / 4;
+            MaxAngularSpeed = 100;//(float)Math.PI * 2;
+            MaxAngularAcceleration = 10;//(float)Math.PI / 2;
 
             Eng1 = new Engine("textures/penios.png", this);
             Eng1.Position = new Vector2f(150, 50);
